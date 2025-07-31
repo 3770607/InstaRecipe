@@ -2,6 +2,7 @@ import streamlit as st
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 import numpy as np
+from PIL import Image
 
 # モデルをロード（事前訓練されたモデル）
 model = tf.keras.applications.MobileNetV2(weights='imagenet')
@@ -24,7 +25,7 @@ st.title("InstaRecipe")
 uploaded_image = st.file_uploader("画像をアップロード", type=["jpg", "png"])
 
 if uploaded_image is not None:
-    img = image.open(uploaded_image)
+    img = Image.open(uploaded_image)
     st.image(img, caption="アップロードした画像", use_column_width=True)
     
     # 画像認識を行う
