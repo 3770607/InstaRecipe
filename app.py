@@ -26,7 +26,7 @@ uploaded_image = st.file_uploader("画像をアップロード", type=["jpg", "p
 
 if uploaded_image is not None:
     img = Image.open(uploaded_image)
-    st.image(img, caption="アップロードした画像", use_column_width=True)
+    st.image(img, caption="アップロードした画像", use_container_width=True)
     
     # 画像認識を行う
     predictions = predict_image(img)
