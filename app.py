@@ -17,7 +17,7 @@ def preprocess_image(img):
 def predict_image(img):
     preprocessed_img = preprocess_image(img)
     preds = model.predict(preprocessed_img)  # 予測を実行
-    decoded_preds = tf.keras.applications.mobilenet_v2.decode_predictions(preds, top=3)[0]
+    decoded_preds = tf.keras.applications.mobilenet_v2.decode_predictions(preds)[0]
     return decoded_preds
 
 st.title("InstaRecipe")
