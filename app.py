@@ -32,6 +32,6 @@ if uploaded_image is not None:
     predictions = predict_image(img)
     
     # 結果を表示
-    st.write("検出された食材:")
+    st.write("検出された物体:")
     for pred in predictions:
         st.write(f"{pred[1]} (確率: {pred[2]*100:.2f}%)")
