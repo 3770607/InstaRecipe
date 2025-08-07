@@ -6,6 +6,11 @@ from PIL import Image
 import tensorflow_hub as hub
 from streamlit_drawable_canvas import st_canvas
 
+import sys
+
+st.write("🧪 現在使われている Python バージョン:", sys.version)
+
+
 # モデルをロード（画像用）
 model = tf.keras.applications.MobileNetV2(weights='imagenet')
 
