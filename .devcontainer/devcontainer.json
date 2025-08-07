@@ -1,0 +1,12 @@
+{
+  "name": "ImageRecognitionPractice",
+  "image": "mcr.microsoft.com/devcontainers/python:3.10",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python"]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/pip-tools:1": {}
+  }
+}
