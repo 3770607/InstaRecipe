@@ -6,7 +6,4 @@
       "extensions": ["ms-python.python"]
     }
   },
-  "features": {
-    "ghcr.io/devcontainers/features/pip-tools:1": {}
-  }
 }
