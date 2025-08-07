@@ -74,7 +74,7 @@ canvas_result = st_canvas(
 
 # 手描きのキャンバスから画像を取得した場合
 if canvas_result.image_data is not None:
-   img_array = canvas_result.image_data.astype("uint8")
+    img_array = canvas_result.image_data.astype("uint8")
     img_pil = Image.fromarray(img_array)
 
     st.image(img_pil, caption="描いた画像", use_container_width=False)
