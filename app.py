@@ -4,7 +4,7 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 from PIL import Image
 
-# モデルをロード（事前訓練されたモデル）
+# モデルをロード（画像用）
 model = tf.keras.applications.MobileNetV2(weights='imagenet')
 
 def preprocess_image(img):
@@ -19,6 +19,20 @@ def predict_image(img):
     preds = model.predict(preprocessed_img)  # 予測を実行
     decoded_preds = tf.keras.applications.mobilenet_v2.decode_predictions(preds)[0]
     return decoded_preds
+
+
+# のモデルをロード（手書き用）
+quickdraw_model = hub.load('https://tfhub.dev/google/quickdraw/monotask/imagenet/classification/1')
+
+def predict_quickdraw(img):
+    img = img.resize((224, 224))  # QuickDrawは224x224が入力サイズ
+    img_array = np.array(img)  # NumPy 配列に変換
+    img_array = np.expand_dims(img_array, axis=0)  # バッチ次元を追加
+    img_array = tf.cast(img_array, tf.float32)  # 浮動小数点型に変換
+
+    preds = quickdraw_model(img_array)  # 予測
+    return preds.numpy()
+
 
 st.title("ImageRecognition")
 
@@ -35,3 +49,19 @@ if uploaded_image is not None:
     st.write("検出された物体:")
     for pred in predictions:
         st.write(f"{pred[1]} (確率: {pred[2]*100:.2f}%)")
+
+
+# 手描きのキャンバスから画像を取得した場合
+if canvas_result.image_data is not None:
+    img_array = canvas_result.image_data.astype("uint8")
+    img_pil = Image.fromarray(img_array)
+
+    # Quick, Draw! モデルで認識
+    preds = predict_quickdraw(img_pil)
+
+    # 結果を表示
+    st.image(img_pil, caption="描いた画像", use_container_width=False)
+    st.write("手描きで認識された物体:")
+    st.write(f"予測: {preds[0]}")
+
+
