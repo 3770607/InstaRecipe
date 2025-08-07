@@ -20,7 +20,7 @@ def predict_image(img):
     decoded_preds = tf.keras.applications.mobilenet_v2.decode_predictions(preds)[0]
     return decoded_preds
 
-st.title("InstaRecipe")
+st.title("ImageRecognition")
 
 uploaded_image = st.file_uploader("画像をアップロード", type=["jpg", "png"])
 
