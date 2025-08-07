@@ -1,3 +1,8 @@
+
+import sys
+
+st.write("🧪 現在使われている Python バージョン:", sys.version)
+
 import streamlit as st
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image
@@ -5,10 +10,6 @@ import numpy as np
 from PIL import Image
 import tensorflow_hub as hub
 from streamlit_drawable_canvas import st_canvas
-
-import sys
-
-st.write("🧪 現在使われている Python バージョン:", sys.version)
 
 
 # モデルをロード（画像用）
